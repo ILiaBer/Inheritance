@@ -53,8 +53,8 @@ public class Manager {
             if (book.getAuthor().equalsIgnoreCase(search)) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 }
 
