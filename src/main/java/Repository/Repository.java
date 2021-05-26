@@ -1,4 +1,4 @@
-package domain;
+package Repository;
 
 import domain.data.Product;
 
@@ -6,17 +6,29 @@ public class Repository {
     private Product[] items = new Product[0];
 
     public void removeById(int id) {
+        if (findById(id) == null) {
+            System.out.println("not found");
+            return;
+        }
         int length = items.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
-        for (Product item : items) {
-            if (item.getId() != id) {
-                tmp[index] = item;
+        for (Product product : items) {
+            if (product.getId() != id) {
+                tmp[index] = product;
                 index++;
             }
         }
         items = tmp;
-        System.out.println("done");
+    }
+
+    public Product findById(int id) {
+        for (Product product : items) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 
 

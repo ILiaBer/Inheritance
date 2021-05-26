@@ -1,9 +1,11 @@
 package domain.data;
 
-public class Smartphone extends Product{
-private String manufacturer;
+import java.util.Objects;
 
-    public Smartphone(String manufacturer) {
+public class Smartphone extends Product {
+    private String manufacturer;
+
+    public Smartphone() {
         this.manufacturer = manufacturer;
     }
 
@@ -19,4 +21,13 @@ private String manufacturer;
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
+
+    public boolean matches(String search){
+        if(super.matches(search)){
+            return true;
+        }
+        return this.getManufacturer().equalsIgnoreCase(search);
+    }
 }
+
+

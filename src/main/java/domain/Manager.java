@@ -1,6 +1,6 @@
 package domain;
 
-import domain.data.Smartphone;
+import Repository.Repository;
 import domain.data.Book;
 import domain.data.Product;
 
@@ -8,35 +8,27 @@ public class Manager {
 
     private Repository repository;
 
+    public Manager(Repository repository) {
+        this.repository = repository;
+    }
+
     public void removeById(int id) {
         repository.removeById(id);
         System.out.println("done");
     }
 
-    public Manager(Repository repository) {
-        this.repository = repository;
-    }
 
     public void add(Product item) {
         repository.save(item);
     }
 
-    public Product[] getAll() {
-        Product[] items = repository.findAll();
-        Product[] result = new Product[items.length];
-        for (int i = 0; i < result.length; i++) {
-            int index = items.length - i - 1;
-            result[i] = items[index];
-        }
-        return result;
-    }
 
     public Product[] searchBy(String text) {
         Product[] result = new Product[0];
         for (Product product : repository.findAll()) {
-            if (matches(product, text)) {
+            if (product.matches(text)) {
                 Product[] tmp = new Product[result.length + 1];
-                // используйте System.arraycopy, чтобы скопировать всё из result в tmp
+                System.arraycopy(result, 0, tmp, 0, result.length);
                 tmp[tmp.length - 1] = product;
                 result = tmp;
             }
