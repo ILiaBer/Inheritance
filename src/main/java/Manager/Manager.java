@@ -1,4 +1,4 @@
-package domain;
+package Manager;
 
 import Repository.Repository;
 import domain.data.Book;
