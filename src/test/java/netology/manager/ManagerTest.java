@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import domain.data.Book;
 import domain.data.Product;
 import domain.data.Smartphone;
-import Repository.Repository;
-import Manager.Manager;
+import repository.Repository;
+import manager.Manager;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
